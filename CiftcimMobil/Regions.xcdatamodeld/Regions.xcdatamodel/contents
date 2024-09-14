@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="22G513" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CityEntity" representedClassName=".CityEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="counties" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CountyEntity" inverseName="city" inverseEntity="CountyEntity"/>
+        <relationship name="districts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DistrictEntity" inverseName="city" inverseEntity="DistrictEntity"/>
+    </entity>
+    <entity name="CountyEntity" representedClassName=".CountyEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CityEntity" inverseName="counties" inverseEntity="CityEntity"/>
+        <relationship name="districts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DistrictEntity" inverseName="county" inverseEntity="DistrictEntity"/>
+    </entity>
+    <entity name="DistrictEntity" representedClassName=".DistrictEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CityEntity" inverseName="districts" inverseEntity="CityEntity"/>
+        <relationship name="county" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CountyEntity" inverseName="districts" inverseEntity="CountyEntity"/>
+        <relationship name="neighborhoods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NeighborhoodEntity" inverseName="district" inverseEntity="NeighborhoodEntity"/>
+    </entity>
+    <entity name="NeighborhoodEntity" representedClassName=".NeighborhoodEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="code" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="district" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DistrictEntity" inverseName="neighborhoods" inverseEntity="DistrictEntity"/>
+    </entity>
+</model>
